@@ -1,0 +1,40 @@
+version: "2"
+services:
+  db:
+    build:
+      context: ./
+      dockerfile: docker/dev/db.Dockerfile
+    image: project-name_db
+    container_name: project-name_db_1
+    environment:
+      MYSQL_USER: docker
+      MYSQL_DATABASE: docker
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - "33060:3306"
+    volumes:
+      - ./docker/dev/db:/mysql/data
+
+  web:
+    build:
+      context: ./
+      dockerfile: docker/dev/web.Dockerfile
+    image: project-name_web
+    container_name: project-name_web_1
+    ports:
+      - "8089:80"
+    volumes_from:
+    - app
+
+  app:
+    build:
+      context: ./
+      dockerfile: docker/dev/app.Dockerfile
+    image: project-name_app
+    container_name: project-name_app_1
+    volumes:
+    - ./php:/var/www
+    #- ~/.ssh:/home/docker-user/.ssh -- pass your local ssh key
+    depends_on:
+      - db
