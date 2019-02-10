@@ -17,9 +17,6 @@ migrate:
 seed:
 	@docker-compose -f docker-compose.yml -p project-name run app php artisan db:seed --force
 
-seed:
-	@docker-compose -f docker-compose.yml -p project-name run app php artisan rutorika:sypexgeo --force
-
 logs:
 	@docker-compose -f docker-compose.yml -p project-name logs --follow
 
