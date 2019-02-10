@@ -1,9 +1,16 @@
 SHELL=/bin/bash -e
 
+fresh-install: install clear-folder
+
 prepare-db: migrate seed
 
 prepare-app: composer-install env key-generate
 
+install:
+	@docker exec -it project-name_app_1  sh -c "composer create-project --prefer-dist laravel/laravel ./laravel"
+
+clear-folder:
+	@docker exec -it project-name_app_1  sh -c "mv ./laravel/* ./ && rm -rf ./laravel"
 
 up:
 	@docker-compose -f docker-compose.yml -p project-name up -d --force-recreate

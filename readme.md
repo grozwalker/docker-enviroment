@@ -3,7 +3,17 @@
 * docker
 * docker-compose
 
-#### Install
+#### Install fresh Laravel
+
+1. Copy `mysql` or `postgres` folder to your app folder.
+2. 
+```
+$> make up
+$> make fresh-install
+```
+
+
+#### Install from existing repository
 
 1. Copy the contents of the desired folder to the root of your project 
 
