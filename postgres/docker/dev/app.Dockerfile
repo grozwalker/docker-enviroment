@@ -11,7 +11,7 @@ RUN apt-get -qq update && apt-get -qq install -y \
     libsqlite3-dev  \
  && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install
+RUN docker-php-ext-install \
     pdo \
     pdo_pgsql \
     zip \
