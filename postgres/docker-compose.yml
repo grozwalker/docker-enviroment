@@ -27,6 +27,16 @@ services:
     volumes_from:
     - app
 
+  node:
+    build:
+      context: ./
+      dockerfile: docker/dev/node.Dockerfile
+    image: project-name_node
+    container_name: project-name_node_1
+    tty: true
+    volumes_from:
+      - app
+
   app:
     build:
       context: ./

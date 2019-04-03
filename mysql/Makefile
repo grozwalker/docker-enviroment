@@ -48,5 +48,8 @@ env:
 key-generate:
 	@docker exec -it project-name_app_1 sh -c "php artisan key:generate"
 
+db-fresh:
+	@docker exec -it project-name_app_1 sh -c "php artisan migrate:fresh --seed --force"
+
 bash:
 	docker exec -it project-name_app_1 bash
