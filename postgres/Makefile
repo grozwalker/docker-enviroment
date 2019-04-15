@@ -6,6 +6,10 @@ prepare-db: migrate seed
 
 prepare-app: composer-install env key-generate
 
+build-front: npm-i build-grunt copy-front
+
+build-front-fast: npm-i build-grunt copy-front
+
 install:
 	@docker exec -it project-name_app_1  sh -c "composer create-project --prefer-dist laravel/laravel ./laravel"
 
@@ -50,6 +54,15 @@ key-generate:
 
 db-fresh:
 	@docker exec -it project-name_app_1 sh -c "php artisan migrate:fresh --seed --force"
+
+npm-i:
+	@docker exec -it lescraft_node_1 sh -c "npm i"
+
+build-grunt:
+	@docker exec -it project-name_node_1 sh -c "grunt build-fast"
+
+copy-front:
+	@cp -r ./markup/build/res ./php/public
 
 bash:
 	docker exec -it project-name_app_1 bash

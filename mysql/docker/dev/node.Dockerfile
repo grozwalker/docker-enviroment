@@ -1,8 +1,7 @@
-FROM node:10-alpine
-
-RUN apk add --quiet --no-progress --update git bash
+FROM node:10
 
 RUN npm install -g bower
-RUN npm install --global gulp-cli && npm install gulp
+RUN npm install --global gulp-cli grunt-cli && npm install gulp grunt
+RUN echo '{ "allow_root": true }' > /root/.bowerrc
 
-WORKDIR /var/www
+WORKDIR /var/www/markup

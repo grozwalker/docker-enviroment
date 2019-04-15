@@ -44,6 +44,19 @@ $> php artisan db:seed
 
 and that's all!
 
+###Build front
+**Warning!** Compatible with Ilya Biryukov (https://github.com/uncleF) Front TemplateX (https://github.com/uncleF/TemplateX) and folder structure: markup-php
+
+```
+$> make build-front #  npm install, run grunt build fast, copy assets from markub build to php/publci 
+```
+
+And build without npm install
+
+```
+$> make build-front-fast #  run grunt build fast, copy assets from markub build to php/publci 
+```
+
 #####P.s. 
 There may be a permission issue with the folder where the database is stored when you recreate the container. 
 

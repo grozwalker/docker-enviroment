@@ -34,8 +34,8 @@ services:
     image: project-name_node
     container_name: project-name_node_1
     tty: true
-    volumes_from:
-      - app
+    volumes:
+      - ./:/var/www
 
   app:
     build:
