@@ -4,8 +4,8 @@ services:
     build:
       context: ./
       dockerfile: docker/dev/db.Dockerfile
-    image: project-name_db
-    container_name: project-name_db_1
+    image: ${COMPOSE_PROJECT_NAME}_db
+    container_name: ${COMPOSE_PROJECT_NAME}_db_1
     environment:
       MYSQL_USER: docker
       MYSQL_DATABASE: docker
@@ -13,15 +13,13 @@ services:
       MYSQL_ROOT_PASSWORD: secret
     ports:
       - "33060:3306"
-    volumes:
-      - ./docker/dev/db:/mysql/data
 
   web:
     build:
       context: ./
       dockerfile: docker/dev/web.Dockerfile
-    image: project-name_web
-    container_name: project-name_web_1
+    image: ${COMPOSE_PROJECT_NAME}_web
+    container_name: ${COMPOSE_PROJECT_NAME}_web_1
     ports:
       - "8089:80"
     volumes_from:
@@ -31,8 +29,8 @@ services:
     build:
       context: ./
       dockerfile: docker/dev/node.Dockerfile
-    image: project-name_node
-    container_name: project-name_node_1
+    image: ${COMPOSE_PROJECT_NAME}_node
+    container_name: ${COMPOSE_PROJECT_NAME}_node_1
     tty: true
     volumes:
       - ./:/var/www
@@ -41,8 +39,8 @@ services:
     build:
       context: ./
       dockerfile: docker/dev/app.Dockerfile
-    image: project-name_app
-    container_name: project-name_app_1
+    image: ${COMPOSE_PROJECT_NAME}_app
+    container_name: ${COMPOSE_PROJECT_NAME}_app_1
     volumes:
     - ./:/var/www
     #- ~/.ssh:/home/docker-user/.ssh -- pass your local ssh key
